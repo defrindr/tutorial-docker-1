@@ -14,6 +14,9 @@ RUN echo "Installing package"
 RUN npm set progress=false && npm config set depth 0
 RUN npm install
 
+# Menggunakan nodemon untuk utility
+RUN npm install -g nodemon
+
 ENV NODE_PATH=/modules/node_modules
 
 # Setup working directory
@@ -22,7 +25,7 @@ COPY ./src /app
 
 VOLUME ["/app"]
 
-CMD ["node", "index.js"]
+CMD ["nodemon", "start"]
 
 # Expose the port (optional, if your app runs on a specific port)
 EXPOSE 3000
